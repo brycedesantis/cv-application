@@ -1,0 +1,20 @@
+#root {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
+}
+
+.card-holder {
+	margin: auto;
+	height: 14.5em;
+	width: 28em;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+.card {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
