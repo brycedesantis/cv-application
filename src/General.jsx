@@ -1,34 +1,21 @@
-import { useState } from "react"
+// import { useState } from "react"
 import Cards from "./Cards"
+import Inputs from "./Inputs"
 import "./styles/General.css"
 
-function Inputs({ name }) {
-	return (
-		<form>
-			<label className="labels">
-				{name}
-				<input
-					className="label-inputs"
-					type={name === "phone" ? "tel" : name}
-				/>
-			</label>
-		</form>
-	)
-}
-
 function General() {
-	const [activeIndex, setActiveIndex] = useState(0)
+	// const [activeIndex, setActiveIndex] = useState(0)
 	return (
 		<div>
 			<Cards
 				title={"general"}
-				isActive={activeIndex === 0}
-				onShow={() => setActiveIndex(0)}
+				// isActive={activeIndex === 0}
+				// onShow={() => setActiveIndex(0)}
 			>
 				<div className="general-information">
-					<Inputs name={"name"} />
-					<Inputs name={"email"} />
-					<Inputs name={"phone"} />
+					<Inputs name={"name"} type={"text"} />
+					<Inputs name={"email"} type={"email"} />
+					<Inputs name={"phone"} type={"tel"} />
 				</div>
 			</Cards>
 		</div>

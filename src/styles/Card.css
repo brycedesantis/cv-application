@@ -6,8 +6,8 @@
 }
 
 .card-holder {
-	margin: auto;
-	height: 14.5em;
+	margin: 1em;
+	height: auto;
 	width: 28em;
 	padding: 10px;
 	border: 1px solid black;
