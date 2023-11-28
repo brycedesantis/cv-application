@@ -72,13 +72,13 @@ button:focus-visible {
 	display: flex;
 	justify-content: space-between;
 	text-align: right;
-	width: 400px;
+	width: 500px;
 	line-height: 26px;
 	margin-bottom: 10px;
 }
 
 .label-inputs {
 	height: 20px;
-	flex: 0 0 200px;
+	flex: 0 0 300px;
 	margin-left: 10px;
 }
