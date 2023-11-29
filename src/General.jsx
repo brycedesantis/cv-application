@@ -2,10 +2,11 @@ import { useState } from "react"
 import Cards from "./Cards"
 import "./styles/General.css"
 
-function General() {
+function General(props) {
 	const [nameValue, setNameValue] = useState("")
 	const [emailValue, setEmailValue] = useState("")
 	const [phoneValue, setPhoneValue] = useState("")
+	const [form, setForm] = useState("generalData")
 
 	const questions = [
 		{
@@ -39,14 +40,20 @@ function General() {
 
 	function handleClick(e) {
 		e.preventDefault()
-		console.log(nameValue, emailValue, phoneValue)
+		const formData = {
+			name: nameValue,
+			email: emailValue,
+			phone: phoneValue,
+			form: form,
+		}
+		props.saveData(formData)
 	}
 
 	return (
 		<div>
 			<Cards title={"general"}>
 				<div className="general-information">
-					<form action="">
+					<form action="" onSubmit={handleClick}>
 						{questions.map((question) => (
 							<label key={question.id} className="labels">
 								{question.name}
@@ -58,7 +65,7 @@ function General() {
 								/>
 							</label>
 						))}
-						<button onClick={handleClick} type="submit" className="save-button">
+						<button type="submit" className="save-button">
 							Save
 						</button>
 					</form>

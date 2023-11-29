@@ -2,10 +2,11 @@ import { useState } from "react"
 import Cards from "./Cards"
 import "./styles/Education.css"
 
-function Education() {
+function Education(props) {
 	const [schoolName, setSchoolName] = useState("")
 	const [studyField, setStudyField] = useState("")
 	const [studyDate, setStudyDate] = useState("")
+	const [form, setForm] = useState("educationData")
 
 	const questions = [
 		{
@@ -42,11 +43,22 @@ function Education() {
 		console.log(schoolName, studyField, studyDate)
 	}
 
+	function handleClick(e) {
+		e.preventDefault()
+		const formData = {
+			schoolName: schoolName,
+			studyField: studyField,
+			studyDate: studyDate,
+			form: form,
+		}
+		props.saveData(formData)
+	}
+
 	return (
 		<div>
 			<Cards title={"education"}>
 				<div className="education-information">
-					<form action="">
+					<form action="" onSubmit={handleClick}>
 						{questions.map((question) => (
 							<label key={question.id} className="labels">
 								{question.name}
@@ -58,7 +70,7 @@ function Education() {
 								/>
 							</label>
 						))}
-						<button onClick={handleClick} type="submit" className="save-button">
+						<button type="submit" className="save-button">
 							Save
 						</button>
 					</form>

@@ -2,12 +2,13 @@ import { useState } from "react"
 import Cards from "./Cards"
 import "./styles/Practical.css"
 
-function Practical() {
+function Practical(props) {
 	const [companyName, setCompanyName] = useState("")
 	const [positionTitle, setPositionTitle] = useState("")
 	const [mainRespon, setMainRespon] = useState("")
 	const [startDate, setStartDate] = useState("")
 	const [endDate, setEndDate] = useState("")
+	const [form, setForm] = useState("practicalData")
 
 	const questions = [
 		{
@@ -46,7 +47,7 @@ function Practical() {
 			setPositionTitle(inputValue)
 		} else if (inputName === "Main responsibilities") {
 			setMainRespon(inputValue)
-		} else if (inputName === "Start Date") {
+		} else if (inputName === "Start date") {
 			setStartDate(inputValue)
 		} else if (inputName === "End date") {
 			setEndDate(inputValue)
@@ -55,14 +56,22 @@ function Practical() {
 
 	function handleClick(e) {
 		e.preventDefault()
-		console.log(companyName, positionTitle, mainRespon, startDate, endDate)
+		const formData = {
+			companyName: companyName,
+			positionTitle: positionTitle,
+			mainRespon: mainRespon,
+			startDate: startDate,
+			endDate: endDate,
+			form: form,
+		}
+		props.saveData(formData)
 	}
 
 	return (
 		<div>
 			<Cards title={"Practical Experience"}>
 				<div className="practical-information">
-					<form action="">
+					<form action="" onSubmit={handleClick}>
 						{questions.map((question) => (
 							<label key={question.id} className="labels">
 								{question.name}
@@ -74,7 +83,7 @@ function Practical() {
 								/>
 							</label>
 						))}
-						<button onClick={handleClick} type="submit" className="save-button">
+						<button type="submit" className="save-button">
 							Save
 						</button>
 					</form>
