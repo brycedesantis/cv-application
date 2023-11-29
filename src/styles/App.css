@@ -44,3 +44,15 @@
 form {
 	padding-left: 2em;
 }
+
+.edit-button {
+	position: relative;
+	left: 89%;
+}
+
+.edited {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 0.3125em 2em;
+}

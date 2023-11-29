@@ -1,11 +1,12 @@
 import { useState } from "react"
 import Cards from "./Cards"
-import "./styles/Education.css"
+import "../styles/Education.css"
 
 function Education(props) {
 	const [schoolName, setSchoolName] = useState("")
 	const [studyField, setStudyField] = useState("")
 	const [studyDate, setStudyDate] = useState("")
+	const [editMode, setEditMode] = useState(false)
 	const [form, setForm] = useState("educationData")
 
 	const questions = [
@@ -38,12 +39,7 @@ function Education(props) {
 		}
 	}
 
-	function handleClick(e) {
-		e.preventDefault()
-		console.log(schoolName, studyField, studyDate)
-	}
-
-	function handleClick(e) {
+	function saveInfo(e) {
 		e.preventDefault()
 		const formData = {
 			schoolName: schoolName,
@@ -52,28 +48,47 @@ function Education(props) {
 			form: form,
 		}
 		props.saveData(formData)
+		setEditMode(true)
+	}
+
+	function changeMode(e) {
+		e.preventDefault()
+		setEditMode(false)
 	}
 
 	return (
 		<div>
 			<Cards title={"education"}>
 				<div className="education-information">
-					<form action="" onSubmit={handleClick}>
-						{questions.map((question) => (
-							<label key={question.id} className="labels">
-								{question.name}
-								<input
-									name={question.name}
-									onChange={handleChange}
-									className="label-inputs"
-									type={question.type}
-								/>
-							</label>
-						))}
-						<button type="submit" className="save-button">
-							Save
-						</button>
-					</form>
+					{!editMode ? (
+						<form action="" onSubmit={saveInfo}>
+							{questions.map((question) => (
+								<label key={question.id} className="labels">
+									{question.name}
+									<input
+										name={question.name}
+										onChange={handleChange}
+										className="label-inputs"
+										type={question.type}
+									/>
+								</label>
+							))}
+							<button type="submit" className="save-button">
+								Save
+							</button>
+						</form>
+					) : (
+						<>
+							<div className="edited">
+								<p className="schoolName">{schoolName}</p>
+								<p className="studyField">{studyField}</p>
+								<p className="studyDate">{studyDate}</p>
+							</div>
+							<button className="edit-button" onClick={changeMode}>
+								Edit
+							</button>
+						</>
+					)}
 				</div>
 			</Cards>
 		</div>

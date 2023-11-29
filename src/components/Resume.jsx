@@ -1,4 +1,4 @@
-import "./styles/Resume.css"
+import "../styles/Resume.css"
 
 function Resume({ general, practical, education }) {
 	const generalItems = Object.keys(general).map((value, i) => {
@@ -34,8 +34,16 @@ function Resume({ general, practical, education }) {
 	return (
 		<div className="resume-area">
 			<div className="general">{generalItems}</div>
-			<div className="education">{educationItems}</div>
-			<div className="practical">{practicalItems}</div>
+			<hr />
+			<div className="education">
+				<h2>Education</h2>
+				{educationItems}
+			</div>
+			<hr />
+			<div className="practical">
+				<h2>Practical Experience</h2>
+				{practicalItems}
+			</div>
 		</div>
 	)
 }

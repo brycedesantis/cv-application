@@ -1,7 +1,7 @@
 import { useState } from "react"
-import expandUp from "./assets/expandUp.svg"
-import expandDown from "./assets/expandDown.svg"
-import "./styles/Card.css"
+import expandUp from "../assets/expandUp.svg"
+import expandDown from "../assets/expandDown.svg"
+import "../styles/Card.css"
 
 function Cards({ title, children }) {
 	const [isActive, setIsActive] = useState(false)

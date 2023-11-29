@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Cards from "./Cards"
-import "./styles/Practical.css"
+import "../styles/Practical.css"
 
 function Practical(props) {
 	const [companyName, setCompanyName] = useState("")
@@ -8,6 +8,7 @@ function Practical(props) {
 	const [mainRespon, setMainRespon] = useState("")
 	const [startDate, setStartDate] = useState("")
 	const [endDate, setEndDate] = useState("")
+	const [editMode, setEditMode] = useState(false)
 	const [form, setForm] = useState("practicalData")
 
 	const questions = [
@@ -54,7 +55,7 @@ function Practical(props) {
 		}
 	}
 
-	function handleClick(e) {
+	function saveInfo(e) {
 		e.preventDefault()
 		const formData = {
 			companyName: companyName,
@@ -65,28 +66,49 @@ function Practical(props) {
 			form: form,
 		}
 		props.saveData(formData)
+		setEditMode(true)
+	}
+
+	function changeMode(e) {
+		e.preventDefault()
+		setEditMode(false)
 	}
 
 	return (
 		<div>
 			<Cards title={"Practical Experience"}>
 				<div className="practical-information">
-					<form action="" onSubmit={handleClick}>
-						{questions.map((question) => (
-							<label key={question.id} className="labels">
-								{question.name}
-								<input
-									name={question.name}
-									onChange={handleChange}
-									className="label-inputs"
-									type={question.type}
-								/>
-							</label>
-						))}
-						<button type="submit" className="save-button">
-							Save
-						</button>
-					</form>
+					{!editMode ? (
+						<form action="" onSubmit={saveInfo}>
+							{questions.map((question) => (
+								<label key={question.id} className="labels">
+									{question.name}
+									<input
+										name={question.name}
+										onChange={handleChange}
+										className="label-inputs"
+										type={question.type}
+									/>
+								</label>
+							))}
+							<button type="submit" className="save-button">
+								Save
+							</button>
+						</form>
+					) : (
+						<>
+							<div className="edited">
+								<p className="companyNAme">{companyName}</p>
+								<p className="positionTitle">{positionTitle}</p>
+								<p className="mainRespon">{mainRespon}</p>
+								<p className="startDate">{startDate}</p>
+								<p className="endDate">{endDate}</p>
+							</div>
+							<button className="edit-button" onClick={changeMode}>
+								Edit
+							</button>
+						</>
+					)}
 				</div>
 			</Cards>
 		</div>

@@ -2,7 +2,7 @@ import General from "./General"
 import Education from "./Education"
 import Practical from "./Practical"
 import Resume from "./Resume"
-import "./styles/App.css"
+import "../styles/App.css"
 import { useState } from "react"
 
 function App() {
