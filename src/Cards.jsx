@@ -21,7 +21,6 @@ function Cards({ title, children }) {
 			{isActive ? (
 				<>
 					<div>{children}</div>
-					<button className="save-button">Save</button>
 				</>
 			) : (
 				""
